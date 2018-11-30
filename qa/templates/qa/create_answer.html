@@ -1,0 +1,33 @@
+{% extends 'qa/base.html' %}
+{% load django_markdown %}
+{% load static %}
+{% block title %}回答{% endblock %}
+
+{% block content %}
+<div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+  {% if message %}
+  <strong>输入有效的问题!</strong>
+  {% endif %}
+
+  <form method="post" action="{% block action_url %}{% url 'qa_create_answer' view.kwargs.question_id %}{% endblock action_url %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input class="btn pull-right btn-success btn-primary btn-lg " type="submit" value="提交答案" />
+  </form>
+  <script type="text/javascript">
+
+      $(document).ready(function() {
+    $('body').easyBackground({
+        wrapNeighbours: true
+    });
+      });
+
+  </script>
+</div>
+
+
+{% endblock content %}
+{% block extra_js %}
+  {% markdown_editor "#id_answer_text" %}
+  {% markdown_media %}
+{% endblock %}

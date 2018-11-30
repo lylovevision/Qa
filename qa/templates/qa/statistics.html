@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="../static/js/echarts.min.js"></script>
+    <style type="text/css">
+          #bg-fr{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: inline-block;
+            z-index: -1;
+            overflow: hidden;
+          }
+          #bg-fr iframe{
+            width: 100%;
+            height: 150%;
+            margin-top: -10%;
+          }
+          #main{
+            width: 600px;
+            height:400px;
+            margin-left: 50px;
+            float: left;
+          }
+          body > div:nth-child(2){
+            font-size: 50px; 
+            text-align: center;
+            margin-left: 1000px;
+            margin-top: 100px;
+            float: left;
+            background-color: blue;
+          }
+          body > div:nth-child(2):hover{
+            color:white;
+            background-color: lime;
+          }
+    </style>
+</head>
+<body>
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="bg-fr">
+        <iframe src="http://www.17sucai.com/pins/demo-show?id=31327 "></iframe>
+    </div>
+    <div ><a href="/" style="color: white;text-decoration: none;">返  回 首 页</a></div>
+
+    <div id="main" >
+        
+    </div>
+
+    <script type="text/javascript">
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            //标题
+            title: {
+                text: 'NO . Eight 注册统计',
+                textStyle:{
+                    fontSize: '16',     //字体大小
+                    fontWeight: 'bolder'        //字体加粗
+                }
+
+            },
+            tooltip: {},
+            legend: {
+                data:['人数'],
+                textStyle:{
+                    fontSize: '16',     //字体大小
+                    fontWeight: 'bolder'        //字体加粗
+                }
+
+            },
+            xAxis: {
+                data: ["2018-11-25","2018-11-26","2018-11-27","2018-11-28","2018-11-29","2018-11-30"],
+                axisLabel:{
+                    interval:0,
+                    textStyle:{
+                        fontSize: '13',     //字体大小
+                        fontWeight: 'bolder'        //字体加粗
+
+                    }
+                }
+            },
+            yAxis: {},
+            series: [{
+                name: '人数',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20],
+
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>NO.8 问答网 | {% block title %}{% endblock title %}</title>
+    <meta charset="UTF-8"/>
+    <link rel="icon" type="image/png" href="static/qa/icon.ico">
+    <script src="https://cdn.bootcss.com/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/jquery.jqlouds.min.js' %}"></script>
+    <!-- <link href='//fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='//fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'> -->
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/qa.css' %}" rel="stylesheet"/>
+    
+     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+ 
+ <script type="text/javascript" src="{% static 'js/easyBackground-min.js' %}"></script>
+<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}" media="screen">
+
+    <style type="text/css">
+      body { 
+        background-color: #f4fbfd; 
+        background-image: url({% static 'img/bg.png' %});
+        background-repeat: repeat-x; padding-top: 30px;
+      }
+    </style>
+  </head>
+  <body>  
+ <nav class="navbar navbar-top" role="navigation" style="z-index: 98">
+  <div class="container"> 
+    <div class="left-wd" style="position: absolute;padding: 10px;margin-top: -30px;z-index: 100">
+      <h2>
+          <a href="{% url 'qa_index' %}">
+            
+            <img width="50px" src="{% static 'img/no8.png' %}" />
+               <orange> NO. Eight </orange>
+          </a>
+          <small></small>
+        </h2>
+    </div>
+    {% block bar_lg %}
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="navbar-collapse collapse in" id="top-navbar-1" aria-expanded="true" style="z-index: 99"> 
+      <ul class="nav navbar-nav navbar-right" >
+        <li><a class="btn " href="/login">登录</a></li> 
+        <li><a class="btn " href="/register">注册</a></li> 
+        <li><a class="btn " href="/logout">退出登录</a></li>
+      </ul>
+    </div>
+    {% endblock %}
+  </div>
+ </nav>
+
+<div id="sky" style="height: 10px; position: relative;margin-top:-100px;z-index: 2" class="jqlouds-clouds">
+  <img class="jqlouds-cloud" src="{% static 'img/cloud.png' %}" style="height: 24px; width: 56px; position: absolute; bottom: 76.35px; left: 825.27px;">
+  <img class="jqlouds-cloud" src="{% static 'img/cloud.png' %}" style="height: 24px; width: 56px; position: absolute; bottom: 76.35px; left: 825.27px;">
+  <img class="jqlouds-cloud" src="{% static 'img/cloud.png' %}" style="height: 32px; width: 75px; position: absolute; bottom: 66.12px; left: 296.94px;">
+  <img class="jqlouds-cloud blur" src="{% static 'img/cloud.png' %}" style="height: 32px; width: 75px; position: absolute; bottom: 95.11px; left: 350.37px; filter: blur(3px); opacity: 0.7;">
+</div> 
+
+    <!-- <div class="topbar"></div> -->
+    <div class="container">
+      <div class="page-header">
+        <div class="btn-group btn-group-sm pull-right" role="group" style="z-index: 111">
+
+        <a class="btn btn-primary pull-right" href="javascript:history.go(-1);">
+          <span class="glyphicon glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+           返回
+         </a>
+      	<a class="btn btn-warning pull-right" href="#search">
+          <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+           搜索
+         </a>
+        <a class="btn btn-danger pull-right " href="{% url 'qa_create_question' %}">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+           提问
+         </a>
+
+        </div> 
+          <h2>
+            <a href="{% url 'qa_index' %}"> 
+              <img width="50px" src=""/> 
+            </a>
+            <small></small>
+          </h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      {% if messages %}
+      {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+      {% endfor %}
+      {% endif %}
+      {% block content %}
+
+      {% endblock content %}
+      <div id="search">
+      	<button type="button" class="close">关闭</button>
+      	<form method="GET" action="{% url 'qa_search' %}">
+      	  <input type="search" value="" name="word" placeholder="在这里输入关键字" />
+      	  <input class="btn btn-lg btn-warning" type="submit" value="搜索" />
+      	</form> 
+      </div> 
+    </div>
+
+    <hr>
+
+    <center>
+      <a href="http://www.djangoproject.com/">
+        <img src="https://www.djangoproject.com/m/img/badges/djangoproject120x25.gif" border="0" alt="A Django project." title="A Django project." /></a> ·
+      <a href="https://github.com/swappsco/django-qa/">Github</a> ·
+      <a data-toggle="modal" data-target="#apiModal">API</a> ·
+      <a href="#">Python1-NO.8 二次开发</a> ·
+      <a href="statistics/">Python1-NO.8 统计</a> .
+      <small><a href="/admin">管理面板</a></small></center>
+    <br/><br/>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="apiModal" tabindex="-1" role="dialog" aria-labelledby="APIModal" aria-hidden="true">
+      <div class="modal-dialog">
+	<div class="modal-content">
+	  <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel"><span class="glyphicon glyphicon-cloud" aria-hidden="true"></span> API Access</h4>
+	  </div>
+	  <div class="modal-body">
+            <ul>
+              <li>
+		<b>问题清单</b>
+		<br/>检索问题列表.
+		<br/>json URL : <code class="custom-code">http://djangoqa.azurewebsites.net/api/questions/?format=json</code>
+              </li>
+              <br/>
+              <li>
+		<b>用户列表</b>
+		<br/>检索用户列表.
+		<br/>json URL : <code class="custom-code">http://djangoqa.azurewebsites.net/api/users/?format=json</code>
+              </li>
+            </ul>
+	  </div>
+	  <div class="modal-footer">
+            <button type="button" class="btn btn-info" data-dismiss="modal">关闭</button>
+	  </div>
+	</div>
+      </div>
+    </div>
+    {% block js %}
+    <script>
+      $(function () {
+      $('a[href="#search"]').on('click', function(event) {
+      event.preventDefault();
+      $('#search').addClass('open');
+      $('#search > form > input[type="search"]').focus();
+      });
+
+      $('#search, #search button.close').on('click keyup', function(event) {
+      if (event.target == this || event.target.className == 'close' || event.keyCode == 27) {
+      $(this).removeClass('open');
+      }
+      });
+
+      });
+    </script>
+    <script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {% endblock js %}
+    {%block extra_js %}{% endblock extra_js %}
+  <script>
+    jQuery(function($) { 
+       $('#sky').jQlouds({ 
+            wind: true     
+      }); 
+    }); 
+  </script>
+  </body>
+<style type="text/css">#yddContainer{display:block;font-family:Microsoft YaHei;position:relative;width:100%;height:100%;top:-4px;left:-4px;font-size:12px;border:1px solid}#yddTop{display:block;height:22px}#yddTopBorderlr{display:block;position:static;height:17px;padding:2px 28px;line-height:17px;font-size:12px;color:#5079bb;font-weight:bold;border-style:none solid;border-width:1px}#yddTopBorderlr .ydd-sp{position:absolute;top:2px;height:0;overflow:hidden}.ydd-icon{left:5px;width:17px;padding:0px 0px 0px 0px;padding-top:17px;background-position:-16px -44px}.ydd-close{right:5px;width:16px;padding-top:16px;background-position:left -44px}#yddKeyTitle{float:left;text-decoration:none}#yddMiddle{display:block;margin-bottom:10px}.ydd-tabs{display:block;margin:5px 0;padding:0 5px;height:18px;border-bottom:1px solid}.ydd-tab{display:block;float:left;height:18px;margin:0 5px -1px 0;padding:0 4px;line-height:18px;border:1px solid;border-bottom:none}.ydd-trans-container{display:block;line-height:160%}.ydd-trans-container a{text-decoration:none;}#yddBottom{position:absolute;bottom:0;left:0;width:100%;height:22px;line-height:22px;overflow:hidden;background-position:left -22px}.ydd-padding010{padding:0 10px}#yddWrapper{color:#252525;z-index:10001;background:url(chrome-extension://eopjamdnofihpioajgfdikhhbobonhbb/ab20.png);}#yddContainer{background:#fff;border-color:#4b7598}#yddTopBorderlr{border-color:#f0f8fc}#yddWrapper .ydd-sp{background-image:url()}#yddWrapper a,#yddWrapper a:hover,#yddWrapper a:visited{color:#50799b}#yddWrapper .ydd-tabs{color:#959595}.ydd-tabs,.ydd-tab{background:#fff;border-color:#d5e7f3}#yddBottom{color:#363636}#yddWrapper{min-width:250px;max-width:400px;}</style>
+</html>

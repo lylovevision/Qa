@@ -1,0 +1,29 @@
+{% extends 'core_base.html'%}
+{% block title%}登录{% endblock title%}
+
+{% block core_form %}
+<style type="text/css">
+  p{
+    text-align: center;
+    margin-top:20px;
+  }
+</style>
+  <div class="tyg-div-form">
+    <form action="/login/" method="post">
+      {% csrf_token %}
+      <h2>登录</h2><p class="tyg-p">欢迎访问  Python交流中心</p>
+      <div style="margin:5px 0px;">
+        <input type="text" name="username" placeholder="请输入账号..."/>
+      </div>
+      <div style="margin:5px 0px;">
+        <input type="password" name="password" placeholder="请输入密码..."/>
+      </div>  
+      <button type="submit" >登录</button>
+      <div style="margin:7px 0px;">
+        <p>
+          <a style="color: white;font-size: 15px;" href="/register">注册</a>
+        </p>
+      </div>
+    </form>
+  </div>  
+{% endblock core_form %}

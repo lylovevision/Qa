@@ -1,0 +1,23 @@
+{% extends 'qa/base.html' %}
+{% load django_markdown %}
+{% load bootstrap3 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block content %}
+{% block title %}评论{% endblock %}
+  {% if message %}
+    <strong>输入有效的答案!</strong>
+  {% endif %}
+
+  <form method="post" action="">
+      {% csrf_token %}
+      <!-- {{ form.as_p }} -->
+      {% bootstrap_form form %} 
+      <input class="btn pull-right btn-success" type="submit" value="提交评论" />
+  </form>
+
+</div>
+
+{% markdown_editor "#ans" %}
+{% markdown_media %}
+{% endblock content %}
